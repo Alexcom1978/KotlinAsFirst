@@ -590,5 +590,49 @@ fun russian(n: Int): String {
     return result.joinToString(" ").trim()
 }
 
+// Решение из интернета найденное позже
+/*
+val hundreds = listOf("сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот")
+val tens = listOf("двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто")
+val tens2 = listOf("десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать")
+val units = listOf("одна", "две", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять")
+val units2 = listOf("один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять")
+
+fun russianMiddle(middle: Int, unit: List<String>): List<String> {
+    val result = mutableListOf<String>()
+    if (middle / 100 >= 1) {
+        val hd = middle / 100
+        result.add(hundreds[hd - 1])
+    }
+    if (middle % 100 / 10 == 1) {
+        val tn1 = middle % 10
+        result.add(tens2[tn1])
+    } else if (middle % 100 / 10 == 0) {
+        val un = middle % 10
+        if (un >= 1) result.add(unit[un - 1])
+    } else {
+        val tn = middle % 100 / 10
+        result.add(tens[tn - 2])
+        val un = middle % 10
+        if (un >= 1) result.add(unit[un - 1])
+    }
+    return result
+}
+
+fun russian(n: Int): String {
+    val result = mutableListOf<String>()
+    val part1 = n / 1000
+    if (part1 > 0) {
+        result.addAll(russianMiddle(part1, units))
+        if ((part1 % 10 == 1) && (part1 / 10 % 10 != 1)) result.add("тысяча")
+        else if (!(part1 % 100 / 10 == 1) && (part1 % 10 == 2 || part1 % 10 == 3 || part1 % 10 == 4)) result.add("тысячи")
+        else result.add("тысяч")
+    }
+    val part2 = n % 1000
+    result.addAll(russianMiddle(part2, units2))
+    return result.joinToString(separator = " ")
+}
+*/
+
 
 
