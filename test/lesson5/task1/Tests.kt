@@ -227,6 +227,16 @@ class Tests {
                 "печенье"
             )
         )
+        assertEquals(
+            "Юбилейное",
+            findCheapestStuff(
+                mapOf(
+                    "Мария" to ("печенье" to 80.0), "Орео" to ("печенье" to 100.0), "Юбилейное" to ("печенье" to 30.0),
+                    "Наполеон" to ("торт" to 30.0)
+                ),
+                "печенье"
+            )
+        )
     }
 
     @Test
@@ -252,6 +262,11 @@ class Tests {
             emptyMap<String, Int>(),
             extractRepeats(listOf("a", "b", "c"))
         )
+        assertEquals(
+            mapOf("a" to 2, "b" to 3, "c" to 3),
+            extractRepeats(listOf("c", "a", "b", "c", "a", "b", "b", "c"))
+        )
+
     }
 
     @Test
@@ -315,6 +330,14 @@ class Tests {
         assertEquals(
             Pair(-1, -1),
             findSumOfTwo(listOf(1, 2, 3), 6)
+        )
+        assertEquals(
+            Pair(3, 5),
+            findSumOfTwo(listOf(1, 2, 3, 4, 5, 6), 10)
+        )
+        assertEquals(
+            Pair(5, 7),
+            findSumOfTwo(listOf(1, 2, 3, 4, 5, 6, 10, 17, 17, 23), 23)
         )
     }
 
